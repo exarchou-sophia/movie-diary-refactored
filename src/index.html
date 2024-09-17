@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+        <link href="./output.css" rel="stylesheet" />
+        <!-- <script>
+            tailwind.config = {
+                theme: {
+                    boxShadow: {
+                        lg: "0.5rem 0.5rem  5rem  rgba(2, 15, 29, 0.7)",
+
+                        "2xl": "1rem 1rem 6rem  rgba(2, 15, 29, 1)",
+                    },
+                },
+            };
+        </script> -->
+
+        <script type="module" src="main.js"></script>
+
+        <title>Film Scope</title>
+        <style>
+            html {
+                font-size: 62.5%;
+            }
+        </style>
+    </head>
+    <body class="bg-[#5D7886] text-[1.6rem]">
+        <header
+            class="w-[90%] mx-auto bg-[rgb(125,145,157)] flex justify-between items-center h-[7rem] py-[2rem] px-[7rem] shadow-2xl text-white"
+        >
+            <div class="logo">
+                <h2 class="text text-[1.8rem]">🎥 Film Scope</h2>
+            </div>
+
+            <div class="search w-[30%]">
+                <input
+                    id="searchInput"
+                    type="text"
+                    placeholder="Search Movies"
+                    class="w-full bg-[#020F1D] rounded-full py-[5px] px-[2rem]"
+                />
+            </div>
+
+            <nav class="w-[20%]">
+                <ul class="flex justify-evenly items-center">
+                    <li>
+                        <a
+                            href="index.html"
+                            class="text-[#020F1D]"
+                            target="_blanks"
+                            >Home Page</a
+                        >
+                    </li>
+                    <li><a href="journal.html" target="_blanks">Journal</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <ul
+                id="searchResults"
+                class="hidden relative w-[40%] mx-auto mb-[10rem] shadow-2xl bg-[rgba(125,145,157,60)] grid grid-cols-2 gap-[1.5rem] md:gap-[5rem] p-[7rem] text-white left-[7.5rem]"
+            ></ul>
+            <ul
+                id="popularMovieList"
+                class="cardsContainer w-[90%] mx-auto mb-[10rem] shadow-2xl bg-[rgba(125,145,157,60)] grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-[1.5rem] md:gap-[5rem] p-[7rem] rounded-b-[5rem] text-white"
+            ></ul>
+        </main>
+    </body>
+</html>
