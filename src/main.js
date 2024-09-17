@@ -112,6 +112,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }</span>
     
                 </div>
+                <button class="w-[80%] mt-[1rem] py-[5px] px-[2rem] text-[1.4rem] bg-[#020F1D] rounded-full">+ Add to favorites</button>
                
                 `;
                 item.classList.add(
@@ -123,6 +124,45 @@ document.addEventListener("DOMContentLoaded", async () => {
                 );
                 searchBarResult.appendChild(item);
             });
+            const favButtons = document.querySelectorAll("button");
+            favButtons.forEach(button =>
+                button.addEventListener("click", function () {
+                    const favMovie = this.parentElement;
+                    console.log(favMovie.children);
+                    const favmovieClass = favMovie.classList[1];
+                    console.log(favmovieClass);
+
+                    const favMovieObj = {
+                        imgSrc: document.querySelector(`.${favmovieClass} img`)
+                            .src,
+                        title: document.querySelector(`.${favmovieClass} h4`)
+                            .textContent,
+                        votes: document.querySelector(`.${favmovieClass} .vote`)
+                            .textContent,
+                        realeaseDate: document.querySelector(
+                            `.${favmovieClass} .realese_date`
+                        ).textContent,
+                    };
+                    console.log(favMovieObj);
+                    const favList =
+                        JSON.parse(localStorage.getItem("favList")) || [];
+                    const localStorageFavList = JSON.parse(
+                        localStorage.getItem("favList")
+                    );
+                    if (!favList.some(e => e.title === favMovieObj.title)) {
+                        favList.push(favMovieObj);
+
+                        localStorage.setItem(
+                            "favList",
+                            JSON.stringify(favList)
+                        );
+                    } else {
+                        console.log("Already added to favorite");
+                    }
+
+                    console.log(JSON.parse(localStorage.getItem("favList")));
+                })
+            );
         });
     } catch (error) {
         console.error(error);
