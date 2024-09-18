@@ -1,7 +1,11 @@
+import { createReviewFormularView } from "./review-modal.js";
 import { getMoviesByTitle } from "./search.js";
 
 const favMovie = JSON.parse(localStorage.getItem("favList"));
 document.addEventListener("DOMContentLoaded", async () => {
+    const reviewView = createReviewFormularView();
+    document.getElementById("reviewView").appendChild(reviewView);
+
     try {
         const popMoviesFav = document.getElementById("popularMovieList");
         let buttonIdCounter = 1;
@@ -33,7 +37,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 `review-btn-${buttonIdCounter}`
             );
             reviewButton.addEventListener("click", () => {
-                console.log("leave review clicked");
+                const reviewModalView = document.getElementById("review-modal");
+                reviewModalView.classList.remove("hidden");
             });
 
             buttonIdCounter++;
