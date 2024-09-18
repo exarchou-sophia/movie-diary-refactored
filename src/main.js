@@ -15,16 +15,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             const item = document.createElement("li");
 
             item.innerHTML = `
-            <img src=${
-                movie.poster_path
-            } alt=${movie.id} class="w-full rounded-[3rem] shadow-lg ] cursor-pointer"/>
+            <img src=${movie.poster_path
+                } alt=${movie.id} class="w-full rounded-[3rem] shadow-lg ] cursor-pointer"/>
             <div class="movie_info_text mt-[7px] pl-[2rem">
             <h4 class="text-[1.4rem] md:text-[1.6rem]">${movie.title}</h4>
 
             <span class="vote" >⭐️ ${movie.vote_average.toFixed(1)}</span>
-            <span class="realese_date">| ${
-                movie.release_date.split("-")[0]
-            }</span>
+            <span class="realese_date">| ${movie.release_date.split("-")[0]
+                }</span>
 
             </div>
                <button class="w-[80%] mt-[1rem] py-[5px] px-[2rem] text-[1.4rem] bg-[#020F1D] rounded-full">+ Add to favorites</button>
@@ -54,7 +52,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         .textContent,
                     votes: document.querySelector(`.${favmovieClass} .vote`)
                         .textContent,
-                    realeaseDate: document.querySelector(
+                    releaseDate: document.querySelector(
                         `.${favmovieClass} .realese_date`
                     ).textContent,
                 };
@@ -102,16 +100,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const item = document.createElement("li");
                 item.innerHTML = `
                 <div class="w-[50%] flex justify-between items-center">
-                <img src=${
-                    movie.poster_path
-                } alt=${movie.id} class="w-[40%] rounded-[1rem] shadow-lg mr-[2.5rem] ] cursor-pointer"/>
+                <img src=${movie.poster_path
+                    } alt=${movie.id} class="w-[40%] rounded-[1rem] shadow-lg mr-[2.5rem] ] cursor-pointer"/>
                 <div class="movie_info_text inline-block  text-[1.4rem]">
                 <h4>${movie.title}</h4>
     
                 <span class="vote" >⭐️ ${movie.vote_average.toFixed(1)}</span>
-                <span class="realese_date">| ${
-                    movie.release_date.split("-")[0]
-                }</span>
+                <span class="realese_date">| ${movie.release_date.split("-")[0]
+                    }</span>
     
                 </div>
                 </div>
@@ -156,7 +152,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             .textContent,
                         votes: document.querySelector(`.${favmovieClass} .vote`)
                             .textContent,
-                        realeaseDate: document.querySelector(
+                        releaseDate: document.querySelector(
                             `.${favmovieClass} .realese_date`
                         ).textContent,
                     };
