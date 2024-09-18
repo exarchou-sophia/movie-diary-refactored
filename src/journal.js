@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             //show the searchbar results
             searchBarResult.classList.remove("hidden");
+
             console.log(titleOfMovie);
             titleOfMovie.forEach((movie, i) => {
                 console.log("movie.poster_path}", movie.poster_path);
@@ -78,6 +79,17 @@ document.addEventListener("DOMContentLoaded", async () => {
                 );
                 searchBarResult.appendChild(item);
             });
+
+            //closing the search bar
+            const closeBtn = document.createElement("btn");
+            closeBtn.innerHTML = `<button class="absolute top-[3rem] right-[5rem]">X</button>`;
+            searchBarResult.appendChild(closeBtn);
+
+            closeBtn.addEventListener("click", function () {
+                searchBarResult.classList.add("hidden");
+            });
+
+            //add movie to favorites
             const favButtons = document.querySelectorAll("button");
             favButtons.forEach(button =>
                 button.addEventListener("click", function () {

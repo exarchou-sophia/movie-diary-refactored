@@ -124,6 +124,17 @@ document.addEventListener("DOMContentLoaded", async () => {
                 );
                 searchBarResult.appendChild(item);
             });
+
+            //closing the search bar
+            const closeBtn = document.createElement("btn");
+            closeBtn.innerHTML = `<button class="absolute top-[3rem] right-[5rem]">X</button>`;
+            searchBarResult.appendChild(closeBtn);
+
+            closeBtn.addEventListener("click", function () {
+                searchBarResult.classList.add("hidden");
+            });
+
+            //add movie to favorites
             const favButtons = document.querySelectorAll("button");
             favButtons.forEach(button =>
                 button.addEventListener("click", function () {
