@@ -46,15 +46,90 @@ document.addEventListener("DOMContentLoaded", async () => {
             // reset search results
             searchBarResult.innerHTML = "";
 
+            //show the searchbar results
+            searchBarResult.classList.remove("hidden");
+
             console.log(titleOfMovie);
-            titleOfMovie.forEach(movie => {
+            titleOfMovie.forEach((movie, i) => {
                 console.log("movie.poster_path}", movie.poster_path);
 
                 const item = document.createElement("li");
-                item.textContent = movie.original_title;
-                item.style = `background-position: center; background-repeat: no-repeat; background-size: contain; color: white; background-image: url('${movie.poster_path}'); width: 100px; height: 100px`;
+                item.innerHTML = `
+                <div class="w-[45%] flex justify-between items-center">
+                <img src=${
+                    movie.poster_path
+                } alt="movie poster" class="w-[40%] rounded-[1rem] shadow-lg ] cursor-pointer"/>
+                <div class="movie_info_text block ml-[5px]">
+                <h4 class="text-[1.4rem] md:text-[1.6rem]">${movie.title}</h4>
+    
+                <span class="vote" >⭐️ ${movie.vote_average.toFixed(1)}</span>
+                <span class="realese_date">| ${
+                    movie.release_date.split("-")[0]
+                }</span>
+    
+                </div>
+                </div>
+                <button class="w-[35%] py-[5px] px-[2rem] text-[1.4rem] bg-[#020F1D] rounded-full">+ Add to favorites</button>
+               
+                `;
+                item.classList.add(
+                    "movie",
+                    `movie_${i + 1}`,
+                    "flex",
+                    "items-center",
+                    "justify-between"
+                );
                 searchBarResult.appendChild(item);
             });
+
+            //closing the search bar
+            const closeBtn = document.createElement("btn");
+            closeBtn.innerHTML = `<button class="absolute top-[3rem] right-[5rem]">X</button>`;
+            searchBarResult.appendChild(closeBtn);
+
+            closeBtn.addEventListener("click", function () {
+                searchBarResult.classList.add("hidden");
+            });
+
+            const favButtons = document.querySelectorAll("button");
+            favButtons.forEach(button =>
+                button.addEventListener("click", function () {
+                    const favMovie = this.parentElement;
+                    console.log(favMovie.children);
+                    const favmovieClass = favMovie.classList[1];
+                    console.log(favmovieClass);
+
+                    const favMovieObj = {
+                        imgSrc: document.querySelector(`.${favmovieClass} img`)
+                            .src,
+                        title: document.querySelector(`.${favmovieClass} h4`)
+                            .textContent,
+                        votes: document.querySelector(`.${favmovieClass} .vote`)
+                            .textContent,
+                        realeaseDate: document.querySelector(
+                            `.${favmovieClass} .realese_date`
+                        ).textContent,
+                    };
+                    console.log(favMovieObj);
+                    const favList =
+                        JSON.parse(localStorage.getItem("favList")) || [];
+                    const localStorageFavList = JSON.parse(
+                        localStorage.getItem("favList")
+                    );
+                    if (!favList.some(e => e.title === favMovieObj.title)) {
+                        favList.push(favMovieObj);
+
+                        localStorage.setItem(
+                            "favList",
+                            JSON.stringify(favList)
+                        );
+                    } else {
+                        console.log("Already added to favorite");
+                    }
+
+                    console.log(JSON.parse(localStorage.getItem("favList")));
+                })
+            );
         });
     } catch (error) {
         console.error(error);

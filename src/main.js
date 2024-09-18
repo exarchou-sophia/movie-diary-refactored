@@ -100,10 +100,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const item = document.createElement("li");
                 item.innerHTML = `
+                <div class="w-[45%] flex justify-between items-center">
                 <img src=${
                     movie.poster_path
-                } alt="movie poster" class="w-full rounded-[3rem] shadow-lg ] cursor-pointer"/>
-                <div class="movie_info_text mt-[7px] pl-[2rem">
+                } alt="movie poster" class="w-[40%] rounded-[1rem] shadow-lg ] cursor-pointer"/>
+                <div class="movie_info_text block ml-[5px]">
                 <h4 class="text-[1.4rem] md:text-[1.6rem]">${movie.title}</h4>
     
                 <span class="vote" >⭐️ ${movie.vote_average.toFixed(1)}</span>
@@ -112,17 +113,69 @@ document.addEventListener("DOMContentLoaded", async () => {
                 }</span>
     
                 </div>
+                </div>
+                <button class="w-[35%] py-[5px] px-[2rem] text-[1.4rem] bg-[#020F1D] rounded-full">+ Add to favorites</button>
                
                 `;
                 item.classList.add(
                     "movie",
                     `movie_${i + 1}`,
                     "flex",
-                    "flex-col",
+                    "items-center",
                     "justify-between"
                 );
                 searchBarResult.appendChild(item);
             });
+
+            //closing the search bar
+            const closeBtn = document.createElement("btn");
+            closeBtn.innerHTML = `<button class="absolute top-[3rem] right-[5rem]">X</button>`;
+            searchBarResult.appendChild(closeBtn);
+
+            closeBtn.addEventListener("click", function () {
+                searchBarResult.classList.add("hidden");
+            });
+
+            //add movie to favorites
+            const favButtons = document.querySelectorAll("button");
+            favButtons.forEach(button =>
+                button.addEventListener("click", function () {
+                    const favMovie = this.parentElement;
+                    console.log(favMovie.children);
+                    const favmovieClass = favMovie.classList[1];
+                    console.log(favmovieClass);
+
+                    const favMovieObj = {
+                        imgSrc: document.querySelector(`.${favmovieClass} img`)
+                            .src,
+                        title: document.querySelector(`.${favmovieClass} h4`)
+                            .textContent,
+                        votes: document.querySelector(`.${favmovieClass} .vote`)
+                            .textContent,
+                        realeaseDate: document.querySelector(
+                            `.${favmovieClass} .realese_date`
+                        ).textContent,
+                    };
+                    console.log(favMovieObj);
+                    const favList =
+                        JSON.parse(localStorage.getItem("favList")) || [];
+                    const localStorageFavList = JSON.parse(
+                        localStorage.getItem("favList")
+                    );
+                    if (!favList.some(e => e.title === favMovieObj.title)) {
+                        favList.push(favMovieObj);
+
+                        localStorage.setItem(
+                            "favList",
+                            JSON.stringify(favList)
+                        );
+                    } else {
+                        console.log("Already added to favorite");
+                    }
+
+                    console.log(JSON.parse(localStorage.getItem("favList")));
+                })
+            );
         });
     } catch (error) {
         console.error(error);

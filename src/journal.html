@@ -4,22 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <!-- <script src="https://cdn.tailwindcss.com"></script>  -->
-        <script>
-            tailwind.config = {
-                theme: {
-                    boxShadow: {
-                        lg: "0.5rem 0.5rem  5rem  rgba(2, 15, 29, 0.7)",
-
-                        "2xl": "1rem 1rem 6rem  rgba(2, 15, 29, 1)",
-                    },
-                    extend: {
-                        colors: {
-                            lightBlue: "rgba(125,145,157,60)",
-                        },
-                    },
-                },
-            };
-        </script>
+        <link href="output.css" rel="stylesheet" />
         <script type="module" src="journal.js"></script>
 
         <title>Film Scope</title>
@@ -63,7 +48,10 @@
             </nav>
         </header>
         <main>
-            <ul id="searchResults"></ul>
+            <ul
+                id="searchResults"
+                class="hidden relative w-[40%] mx-auto mb-[10rem] shadow-2xl bg-[rgba(125,145,157,60)] flex flex-col justify-between items-center gap-[1.5rem] md:gap-[5rem] p-[7rem] text-white left-[7.5rem]"
+            ></ul>
 
             <!-- 
                 an ul for the 10 most popular movies (task asked for popular movies and search bar,
