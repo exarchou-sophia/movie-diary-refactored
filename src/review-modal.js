@@ -1,21 +1,18 @@
-export const createReviewFormularView = () => {
+export const createReviewFormularView = (movie) => {
 	const reviewContainer = document.createElement("div");
+	reviewContainer.classList.add("flex", "items-center", "gap-8");
+
+	const movieDetailsView = document.createElement("div");
+	const reviewView = document.createElement("div");
+
+	reviewContainer.appendChild(movieDetailsView);
+	reviewContainer.appendChild(reviewView);
 
 	// title
 	const mainTitleView = document.createElement("h1");
-	mainTitleView.textContent = "Your opinion matters";
+	mainTitleView.textContent = `Your opinion about "${movie.title}" matters`;
 	mainTitleView.classList.add("text-white", "rounded-xl", "text-center", "text-4xl");
-	reviewContainer.appendChild(mainTitleView);
-
-	// const titleView = document.createElement("h1");
-	// titleView.textContent = "Did you enjoy this film?";
-	// titleView.classList.add("font-sans", "text-white", "text-center");
-	// reviewContainer.appendChild(titleView);
-
-	// const textView = document.createElement("p");
-	// textView.textContent = "tell us what you thought";
-	// textView.classList.add("font-sans", "text-center", "text-white");
-	// reviewContainer.appendChild(textView);
+	reviewView.appendChild(mainTitleView);
 
 	// create emoji buttons
 	const emojiContainer = document.createElement("ul");
@@ -26,7 +23,6 @@ export const createReviewFormularView = () => {
 		"items-center",
 		"justify-center",
 		"p-4",
-		"w-full"
 	);
 
 	["😞", "😐", "😃", "🤩"].forEach((emoji) => {
@@ -51,7 +47,6 @@ export const createReviewFormularView = () => {
 
 		emojiButton.onclick = (event) => {
 			const clickedEmojiButton = event.target;
-
 			const isOpacity = clickedEmojiButton.classList.contains("opacity-50");
 
 			emojiContainer.querySelectorAll('li').forEach(eBtn => {
@@ -64,7 +59,7 @@ export const createReviewFormularView = () => {
 		};
 
 		emojiContainer.appendChild(emojiButton);
-		reviewContainer.appendChild(emojiContainer);
+		reviewView.appendChild(emojiContainer);
 	});
 
 	// text area
@@ -78,7 +73,7 @@ export const createReviewFormularView = () => {
 	);
 	reviewTextArea.rows = 6
 	reviewTextArea.placeholder = "Write your review here";
-	reviewContainer.appendChild(reviewTextArea);
+	reviewView.appendChild(reviewTextArea);
 
 	const submitReviewButton = document.createElement("button");
 	submitReviewButton.type = "submit";
@@ -103,7 +98,7 @@ export const createReviewFormularView = () => {
 		reviewModalView.classList.add("hidden");
 		alert("Thank you! Your review has been submitted!");
 	};
-	reviewContainer.appendChild(submitReviewButton);
+	reviewView.appendChild(submitReviewButton);
 
 	const cancelButton = document.createElement("button");
 	cancelButton.classList.add(
@@ -123,7 +118,13 @@ export const createReviewFormularView = () => {
 		const reviewModalView = document.getElementById("review-modal");
 		reviewModalView.classList.add("hidden");
 	};
-	reviewContainer.appendChild(cancelButton);
+	reviewView.appendChild(cancelButton);
+
+	const imgView = document.createElement("img");
+	imgView.src = movie.imgSrc;
+	imgView.classList.add("rounded-2xl");
+	imgView.style = "object-fit: cover; height: 30vh;";
+	movieDetailsView.appendChild(imgView);
 
 	return reviewContainer;
 }

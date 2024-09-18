@@ -3,13 +3,10 @@ import { getMoviesByTitle } from "./search.js";
 
 const favMovie = JSON.parse(localStorage.getItem("favList"));
 document.addEventListener("DOMContentLoaded", async () => {
-    const reviewView = createReviewFormularView();
-    document.getElementById("reviewView").appendChild(reviewView);
-
     try {
         const popMoviesFav = document.getElementById("popularMovieList");
         let buttonIdCounter = 1;
-        favMovie.forEach((movie, index) => {
+        favMovie.forEach(movie => {
             const item = document.createElement("li");
             item.innerHTML = `
             <a href="#"><img src="${movie.imgSrc}" alt=${movie.id} class="w-full rounded-[3rem] shadow-lg"/></a>
@@ -37,6 +34,12 @@ document.addEventListener("DOMContentLoaded", async () => {
                 `review-btn-${buttonIdCounter}`
             );
             reviewButton.addEventListener("click", () => {
+                const reviewViewContainer = document.getElementById("reviewView");
+                reviewViewContainer.innerHTML = "";
+
+                const reviewView = createReviewFormularView(movie);
+                reviewViewContainer.appendChild(reviewView);
+
                 const reviewModalView = document.getElementById("review-modal");
                 reviewModalView.classList.remove("hidden");
             });
