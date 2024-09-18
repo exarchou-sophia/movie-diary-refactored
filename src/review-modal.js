@@ -4,17 +4,17 @@ export const createReviewFormularView = () => {
 	// title
 	const mainTitleView = document.createElement("h1");
 	mainTitleView.textContent = "Your opinion matters";
-	mainTitleView.classList.add("bg-red-900");
+	mainTitleView.classList.add("bg-[rgba(125,145,157,60)]", "m-4", "p-2", "text-white", "rounded-xl");
 	reviewContainer.appendChild(mainTitleView);
 
 	const titleView = document.createElement("h1");
 	titleView.textContent = "Did you enjoy this film?";
-	titleView.classList.add("font-xl-yellow", "font-sans", "text-center");
+	titleView.classList.add("font-sans", "text-white", "text-center");
 	reviewContainer.appendChild(titleView);
 
 	const textView = document.createElement("p");
 	textView.textContent = "tell us what you thought";
-	textView.classList.add("font-xl-yellow", "font-sans", "text-center");
+	textView.classList.add("font-sans", "text-center", "text-white");
 	reviewContainer.appendChild(textView);
 
 	// create emoji buttons
@@ -35,7 +35,7 @@ export const createReviewFormularView = () => {
 		emojiButton.classList.add(
 			"bg-none",
 			"inline-block",
-			"text-4xl",
+			"text-5xl",
 			"text-center",
 			"transform",
 			"transition-transform",
@@ -57,8 +57,7 @@ export const createReviewFormularView = () => {
 
 			if (isOpacity)
 				clickedEmojiButton.classList.remove("opacity-50");
-			// else
-			//     clickedEmojiButton.classList.add("opacity-50");
+
 		};
 
 		emojiContainer.appendChild(emojiButton);
@@ -84,20 +83,18 @@ export const createReviewFormularView = () => {
 	reviewTextArea.placeholder = "Write your review here";
 	reviewContainer.appendChild(reviewTextArea);
 
-	// const reviewTextContent = document.createElement("p");
-	// reviewTextContent.textContent = "review text";
-	// reviewTextContent.classList.add("text-xl", "text-gray-500", "text-center");
-	// reviewContainer.appendChild(reviewTextContent);
+
 
 	const submitReviewButton = document.createElement("button");
 	submitReviewButton.type = "submit";
 	submitReviewButton.classList.add(
-		"font-bold",
-		"rounded-md",
-		"bg-black",
-		"text-red-400",
+		"font-2xl",
+		"rounded-3xl",
+		"bg-[#020F1D]",
+		"text-white",
 		"m-6",
-		"w-1/4",
+		"p-2",
+		"w-1/2",
 		"transform",
 		"transition-transform",
 		"ease-linear",
@@ -106,6 +103,7 @@ export const createReviewFormularView = () => {
 		"mx-auto",
 		"block"
 	);
+	//  < mt-[1rem] py-[5px] px-[2rem] text-[1.4rem] bg-[#020F1D] rounded-full">+ Add to favorites</button>
 	submitReviewButton.textContent = "Submit your review";
 	submitReviewButton.onclick = () => {
 		const textArea = document.getElementById("reviewTextArea");
@@ -118,12 +116,13 @@ export const createReviewFormularView = () => {
 
 	const cancelButton = document.createElement("button");
 	cancelButton.classList.add(
-		"font-bold",
-		"rounded-md",
-		"bg-black",
-		"text-red-400",
+		"font-2xl",
+		"rounded-3xl",
+		"bg-[#020F1D]",
+		"text-white",
 		"m-6",
-		"w-1/4",
+		"p-2",
+		"w-1/2",
 		"transform",
 		"transition-transform",
 		"ease-linear",
@@ -132,7 +131,7 @@ export const createReviewFormularView = () => {
 		"mx-auto",
 		"block"
 	);
-	cancelButton.textContent = "cancel";
+	cancelButton.textContent = "Maybe later";
 	cancelButton.onclick = () => {
 		const textArea = document.getElementById("reviewTextArea");
 		textArea.value = "";
