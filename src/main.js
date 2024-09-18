@@ -100,12 +100,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const item = document.createElement("li");
                 item.innerHTML = `
-                <div class="w-[45%] flex justify-between items-center">
+                <div class="w-[50%] flex justify-between items-center">
                 <img src=${
                     movie.poster_path
-                } alt="movie poster" class="w-[40%] rounded-[1rem] shadow-lg ] cursor-pointer"/>
-                <div class="movie_info_text block ml-[5px]">
-                <h4 class="text-[1.4rem] md:text-[1.6rem]">${movie.title}</h4>
+                } alt="movie poster" class="w-[40%] rounded-[1rem] shadow-lg mr-[2.5rem] ] cursor-pointer"/>
+                <div class="movie_info_text inline-block  text-[1.4rem]">
+                <h4>${movie.title}</h4>
     
                 <span class="vote" >⭐️ ${movie.vote_average.toFixed(1)}</span>
                 <span class="realese_date">| ${
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
                 </div>
                 </div>
-                <button class="w-[35%] py-[5px] px-[2rem] text-[1.4rem] bg-[#020F1D] rounded-full">+ Add to favorites</button>
+                <button class="w-[30%] py-[5px] px-[2rem] text-[1.25rem] bg-[#020F1D] rounded-full">+ Add to favorites</button>
                
                 `;
                 item.classList.add(
@@ -122,7 +122,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                     `movie_${i + 1}`,
                     "flex",
                     "items-center",
-                    "justify-between"
+                    "justify-between",
+                    "border-b-2",
+                    "pb-[3rem]"
                 );
                 searchBarResult.appendChild(item);
             });
