@@ -1,6 +1,6 @@
 export const createReviewFormularView = (movie) => {
 	const reviewContainer = document.createElement("div");
-	reviewContainer.classList.add("flex", "items-center", "gap-8");
+	reviewContainer.classList.add("flex", "items-center", "justify-center", "gap-8");
 
 	const movieDetailsView = document.createElement("div");
 	const reviewView = document.createElement("div");
@@ -123,7 +123,7 @@ export const createReviewFormularView = (movie) => {
 	const imgView = document.createElement("img");
 	imgView.src = movie.imgSrc;
 	imgView.classList.add("rounded-2xl");
-	imgView.style = "object-fit: cover; height: 30vh;";
+	imgView.style = "object-fit: cover; max-height: 35vh; min-height: 30vh";
 	movieDetailsView.appendChild(imgView);
 
 	return reviewContainer;
