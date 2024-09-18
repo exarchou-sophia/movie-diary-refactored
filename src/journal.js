@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         favMovie.forEach((movie, index) => {
             const item = document.createElement("li");
             item.innerHTML = `
-            <a href="#"><img src="${movie.imgSrc}" alt="movie poste" class="w-full rounded-[3rem] shadow-lg"/></a>
+            <a href="#"><img src="${movie.imgSrc}" alt=${movie.id} class="w-full rounded-[3rem] shadow-lg"/></a>
             <div class="mt-[7px] pl-[2rem]">
             <h4 class="text-[1.4rem] md:text-[1.6rem]">${movie.title}</h4>
             <span>${movie.votes}</span>
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 `delete-btn-${buttonIdCounter}`
             );
             deleteButton.addEventListener("click", () => {
-                deleteFav(movie.title);
+                deleteFav(movie.id);
                 item.remove();
             });
             buttonIdCounter++;
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div class="w-[50%] flex justify-between items-center">
                 <img src=${
                     movie.poster_path
-                } alt="movie poster" class="w-[40%] rounded-[1rem] shadow-lg mr-[2.5rem] ] cursor-pointer"/>
+                } alt=${movie.id} class="w-[40%] rounded-[1rem] shadow-lg mr-[2.5rem] ] cursor-pointer"/>
                 <div class="movie_info_text inline-block  text-[1.4rem]">
                 <h4>${movie.title}</h4>
     
@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.log(favmovieClass);
 
                     const favMovieObj = {
+                        id: document.querySelector(`.${favmovieClass} img`).alt,
                         imgSrc: document.querySelector(`.${favmovieClass} img`)
                             .src,
                         title: document.querySelector(`.${favmovieClass} h4`)
@@ -138,9 +139,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 });
 
-function deleteFav(title) {
+function deleteFav(id) {
     let favList = JSON.parse(localStorage.getItem("favList")) || [];
-    favList = favList.filter(movie => movie.title !== title);
+    favList = favList.filter(movie => movie.id !== id);
     localStorage.setItem("favList", JSON.stringify(favList));
 }
 
@@ -157,7 +158,7 @@ function deleteFav(title) {
 //         const item = document.createElement("li");
 
 //         item.innerHTML = `
-//         <a href="#"><img src="${movie.poster_path}" alt="movie poste" class="w-full rounded-[3rem] shadow-lg"/></a>
+//         <a href="#"><img src="${movie.poster_path}" alt=${movie.id} class="w-full rounded-[3rem] shadow-lg"/></a>
 //         <div class="mt-[7px] pl-[2rem]">
 //         <h4 class="text-[1.4rem] md:text-[1.6rem]">${movie.title}</h4>
 

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             item.innerHTML = `
             <img src=${
                 movie.poster_path
-            } alt="movie poster" class="w-full rounded-[3rem] shadow-lg ] cursor-pointer"/>
+            } alt=${movie.id} class="w-full rounded-[3rem] shadow-lg ] cursor-pointer"/>
             <div class="movie_info_text mt-[7px] pl-[2rem">
             <h4 class="text-[1.4rem] md:text-[1.6rem]">${movie.title}</h4>
 
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 console.log(favmovieClass);
 
                 const favMovieObj = {
+                    id: document.querySelector(`.${favmovieClass} img`).alt,
                     imgSrc: document.querySelector(`.${favmovieClass} img`).src,
                     title: document.querySelector(`.${favmovieClass} h4`)
                         .textContent,
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const localStorageFavList = JSON.parse(
                     localStorage.getItem("favList")
                 );
-                if (!favList.some(e => e.title === favMovieObj.title)) {
+                if (!favList.some(e => e.id === favMovieObj.id)) {
                     favList.push(favMovieObj);
 
                     localStorage.setItem("favList", JSON.stringify(favList));
@@ -103,7 +104,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div class="w-[50%] flex justify-between items-center">
                 <img src=${
                     movie.poster_path
-                } alt="movie poster" class="w-[40%] rounded-[1rem] shadow-lg mr-[2.5rem] ] cursor-pointer"/>
+                } alt=${movie.id} class="w-[40%] rounded-[1rem] shadow-lg mr-[2.5rem] ] cursor-pointer"/>
                 <div class="movie_info_text inline-block  text-[1.4rem]">
                 <h4>${movie.title}</h4>
     
@@ -148,6 +149,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     console.log(favmovieClass);
 
                     const favMovieObj = {
+                        id: document.querySelector(`.${favmovieClass} img`).alt,
                         imgSrc: document.querySelector(`.${favmovieClass} img`)
                             .src,
                         title: document.querySelector(`.${favmovieClass} h4`)
