@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                             .textContent,
                         votes: document.querySelector(`.${favmovieClass} .vote`)
                             .textContent,
-                        realeaseDate: document.querySelector(
+                        releaseDate: document.querySelector(
                             `.${favmovieClass} .realese_date`
                         ).textContent,
                     };
