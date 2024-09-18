@@ -15,7 +15,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             <span>${movie.releaseDate}</span>
             </div>
 
-            <button id="delete-btn-${buttonIdCounter}" class="w-[90%] mt-[1rem] py-[5px] px-[2rem] text-[1.2rem] bg-[#020F1D] rounded-full">- Delete from Favorites</button>
+            <button id="delete-btn-${buttonIdCounter}" class="w-[100%] mt-[4px] py-[8px] text-[1.2rem] bg-[#020F1D] rounded-[3rem]">- Delete from Favorites</button> 
+            <button id="review-btn-${buttonIdCounter}" class="w-[100%] mt-[4px] py-[8px] text-[1.2rem] bg-[#020F1D] rounded-[3rem]">Leave your review</button> 
             `;
             item.classList.add("flex", "flex-col", "justify-between");
             popMoviesFav.appendChild(item);
@@ -27,6 +28,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 deleteFav(movie.id);
                 item.remove();
             });
+
+            const reviewButton = document.getElementById(
+                `review-btn-${buttonIdCounter}`
+            );
+            reviewButton.addEventListener("click", () => {
+                console.log("leave review clicked");
+            });
+
             buttonIdCounter++;
         });
     } catch (error) {
@@ -56,16 +65,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 const item = document.createElement("li");
                 item.innerHTML = `
                 <div class="w-[50%] flex justify-between items-center">
-                <img src=${
-                    movie.poster_path
-                } alt=${movie.id} class="w-[40%] rounded-[1rem] shadow-lg mr-[2.5rem] ] cursor-pointer"/>
+                <img src=${movie.poster_path
+                    } alt=${movie.id} class="w-[40%] rounded-[1rem] shadow-lg mr-[2.5rem] ] cursor-pointer"/>
                 <div class="movie_info_text inline-block  text-[1.4rem]">
                 <h4>${movie.title}</h4>
     
                 <span class="vote" >⭐️ ${movie.vote_average.toFixed(1)}</span>
-                <span class="realese_date">| ${
-                    movie.release_date.split("-")[0]
-                }</span>
+                <span class="realese_date">| ${movie.release_date.split("-")[0]
+                    }</span>
     
                 </div>
                 </div>
