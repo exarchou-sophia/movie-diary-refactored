@@ -1,6 +1,6 @@
 {
     "name": "movie-diary-extension",
-    "source": "index.html",
+    "source": "src/index.html",
     "version": "1.0.0",
     "description": "movie diary",
     "scripts": {
