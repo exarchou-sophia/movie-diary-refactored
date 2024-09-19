@@ -1,4 +1,4 @@
-import { getMoviesByTitle, getPopularMovies } from "search.js";
+import { getMoviesByTitle, getPopularMovies } from "./search.js";
 
 // Loading and showing 10 most popular movies before user starts searching
 // for specific ones by title.
